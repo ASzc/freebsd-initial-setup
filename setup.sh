@@ -77,17 +77,54 @@ h2 "bash"
 apply_skel .bashrc
 
 h2 "htop"
-# htop:
-#***********************************************************
-#htop(1) requires linprocfs(5) to be mounted. If you don't
-#have it mounted already, please add this line to /etc/fstab
-#and run `mkdir -p /usr/compat/linux/proc; ln -s /usr/compat /compat; mount linproc`:
-#linproc /compat/linux/proc linprocfs rw 0 0
-#***********************************************************
+echo "linproc /compat/linux/proc linprocfs rw 0 0" >> /etc/fstab
+mkdir -p /usr/compat/linux/proc
+ln -s /usr/compat /compat
+mount linproc
 
 
 
 h1 "Optional configuration"
+
+prompt_skip() {
+    while true
+    do
+        read -r -p "Perform this step? [y/n]: " REPLY
+        if [ "$REPLY" = n ] || [ "$REPLY" = N ]
+        then
+            echo "Declined." >&2
+            return 1
+        elif [ "$REPLY" = y ] || [ "$REPLY" = Y ]
+        then
+            echo "Accepted." >&2
+            return 0
+        else
+            echo "Enter n or N to decline. Enter y or Y to accept." >&2
+        fi
+    done
+}
+
+h2 "Reduce TTY quantity"
+echo "For embedded systems, the default 8 ttys may be unnecessary. To save"
+echo "the limited memory these systems usually have, we can set the amount"
+echo "to a lower value."
+if prompt_skip
+then
+    while true
+    do
+        read -r -p "Enter the desired number of ttys: [2-7] " tty_count
+        if [ "$tty_count" -lt 2 ] || [ "$tty_count" -gt 7 ]
+        then
+            echo "Bad number, out of range" >&2
+        else
+            break
+        fi
+    done
+    sed -i -r -e 's/^\(ttyv['"$tty_count"'-7]\)/#\1/' /etc/ttys
+fi
+
+
+
 
 exit 0
 # TODO
