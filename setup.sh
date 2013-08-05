@@ -56,17 +56,15 @@ apply_skel() {
 
     # Copy to skeleton (affect future users)
     cp "skel/$skel_file" /etc/skel/
-    # TODO chown
 
     # Apply to root
     cp "/etc/skel/$skel_file" /root/
-    # TODO chown
 
     # Apply to current users
-    for user in $(ls /home)
+    ls /home | while read -r user
     do
-        cp "/etc/skel/$skel_file" /root/
-        # TODO chown
+        cp "/etc/skel/$skel_file" "/home/$user/"
+        chown "$user:" "/home/$user/$skel_file"
     done
 }
 
@@ -124,7 +122,7 @@ then
 fi
 
 
-
+h1 "Finished."
 
 exit 0
 # TODO
