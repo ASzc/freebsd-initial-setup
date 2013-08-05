@@ -73,6 +73,7 @@ apply_skel .vimrc
 
 h2 "bash"
 apply_skel .bashrc
+apply_skel .bash_profile
 
 h2 "htop"
 echo "linproc /compat/linux/proc linprocfs rw 0 0" >> /etc/fstab
