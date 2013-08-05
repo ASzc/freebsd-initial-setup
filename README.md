@@ -4,7 +4,7 @@
 
 ### Description
 
-This repo contains scripts and information for setting up a base FreeBSD install with tools that you would find commonly in a Linux distrobution.
+This repo contains scripts and information for setting up a base FreeBSD install with tools that you would find commonly in a Linux distribution.
 
 ### Features
 
