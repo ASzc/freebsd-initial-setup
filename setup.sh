@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 # Copyright (C) 2013 Alex Szczuczko
 #
@@ -131,4 +131,4 @@ exit 0
 h2 "Set default shell to bash for certain users"
 read -p "Enter a username: " -r username
 bash_path="$(which bash)"
-usermod -s "$bash_path" "$username"
+chsh -s "$bash_path" "$username"

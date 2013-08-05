@@ -13,6 +13,8 @@ The following points are installed/configured:
 *   vim
 *   curl
 *   bash
+*   htop
+*   tty quantity
 
 See setup.sh for more detail.
 
