@@ -53,17 +53,18 @@ h1 "Configuring"
 
 apply_skel() {
     skel_file="$1"
+    skel_dot_file="$(echo "$skel_file" | sed -e 's/^\./dot./')"
 
     # Copy to skeleton (affect future users)
-    cp "skel/$skel_file" /etc/skel/
+    cp "skel/$skel_file" "/etc/skel/$skel_dot_file"
 
     # Apply to root
-    cp "/etc/skel/$skel_file" /root/
+    cp "/usr/share/skel/$skel_dot_file" /root/
 
     # Apply to current users
     ls /home | while read -r user
     do
-        cp "/etc/skel/$skel_file" "/home/$user/"
+        cp "/usr/share/skel/$skel_dot_file" "/home/$user/"
         chown "$user:" "/home/$user/$skel_file"
     done
 }
