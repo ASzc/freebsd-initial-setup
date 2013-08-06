@@ -15,6 +15,7 @@ The following points are installed/configured:
 *   bash
 *   htop
 *   tty quantity
+*   TERM=xterm-clear
 
 See setup.sh for more detail.
 
