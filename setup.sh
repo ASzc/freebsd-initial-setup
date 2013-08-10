@@ -64,7 +64,7 @@ apply_skel() {
     # Apply to current users
     ls /home | while read -r user
     do
-        cp "/usr/share/skel/$skel_dot_file" "/home/$user/"
+        cp "/usr/share/skel/$skel_dot_file" "/home/$user/$skel_file"
         chown "$user:" "/home/$user/$skel_file"
     done
 }
