@@ -59,7 +59,7 @@ apply_skel() {
     cp "skel/$skel_file" "/usr/share/skel/$skel_dot_file"
 
     # Apply to root
-    cp "/usr/share/skel/$skel_dot_file" /root/
+    cp "/usr/share/skel/$skel_dot_file" "/root/$skel_file"
 
     # Apply to current users
     ls /home | while read -r user
