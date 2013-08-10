@@ -47,6 +47,7 @@ inst_pkg() {
 inst_pkg vim-lite # no X11 (why does the default vim include gvim anyway?)
 inst_pkg curl
 inst_pkg bash
+inst_pkg bash-completion
 inst_pkg htop
 
 h1 "Configuring"

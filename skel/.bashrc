@@ -11,3 +11,9 @@ then
 else
     PS1='\[\e[0;32m\][\u@\h \W]\$\[\e[0m\] '
 fi
+
+# Enable bash-completion
+if [[ -f /usr/local/share/bash-completion/bash_completion.sh ]]
+then
+    source /usr/local/share/bash-completion/bash_completion.sh
+fi
