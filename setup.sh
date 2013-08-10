@@ -56,7 +56,7 @@ apply_skel() {
     skel_dot_file="$(echo "$skel_file" | sed -e 's/^\./dot./')"
 
     # Copy to skeleton (affect future users)
-    cp "skel/$skel_file" "/etc/skel/$skel_dot_file"
+    cp "skel/$skel_file" "/usr/share/skel/$skel_dot_file"
 
     # Apply to root
     cp "/usr/share/skel/$skel_dot_file" /root/
