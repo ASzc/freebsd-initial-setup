@@ -123,12 +123,22 @@ then
     sed -i -r -e 's/^\(ttyv['"$tty_count"'-7]\)/#\1/' /etc/ttys
 fi
 
+h2 "Set default shell to bash"
+echo "Bash is now installed. You can set the shell of any existing users to"
+echo "it, however it's not recommended by the FreeBSD project to change the"
+echo "shell of the root user (due to the seperation of package binaries and"
+echo "system binaries (as is common in *BSD) affecting their availablily in"
+echo "a recovery environment)."
+if prompt_skip
+then
+    bash_path="$(which bash)"
+    echo "Enter a blank name to stop"
+    while true
+    do
+        read -p "Enter a username: " -r username
+        [ -n "$username" ] || break
+        chsh -s "$bash_path" "$username" || echo "chsh exited with an error code: $?"
+    done
+fi
 
 h1 "Finished."
-
-exit 0
-# TODO
-h2 "Set default shell to bash for certain users"
-read -p "Enter a username: " -r username
-bash_path="$(which bash)"
-chsh -s "$bash_path" "$username"
